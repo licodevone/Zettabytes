@@ -1,0 +1,42 @@
+name: ✨ Feature request
+description: Sugira uma nova funcionalidade ou melhoria.
+labels: ["enhancement", "triage"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Qual problema isso resolve?
+      description: Descreva a necessidade antes da solução.
+    validations:
+      required: true
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solução proposta
+      description: Endpoints, telas, tabelas ou integrações envolvidas.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área
+      multiple: true
+      options:
+        - WhatsApp / Meta Cloud API
+        - Agentes de IA / RAG / MCP
+        - Flow Builder
+        - Live Chat
+        - Billing / planos
+        - Autenticação / multi-tenant
+        - Frontend / UX
+        - Infra / DevEx
+  - type: checkboxes
+    id: contribute
+    attributes:
+      label: Contribuição
+      options:
+        - label: Tenho interesse em implementar esta funcionalidade.

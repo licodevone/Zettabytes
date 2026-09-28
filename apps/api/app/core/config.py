@@ -27,7 +27,7 @@ class Settings(BaseSettings):
     )
 
     PROJECT_NAME: str = "Zettabytes API"
-    VERSION: str = "0.1.0"
+    VERSION: str = "1.0.0"
     ENVIRONMENT: Environment = Environment.DEVELOPMENT
     API_V1_PREFIX: str = "/api/v1"
 

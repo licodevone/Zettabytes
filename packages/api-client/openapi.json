@@ -3,7 +3,7 @@
   "info": {
     "title": "Zettabytes API",
     "summary": "Automação de WhatsApp com fluxos e agentes de IA generativa.",
-    "version": "0.1.0"
+    "version": "1.0.0"
   },
   "paths": {
     "/api/v1/health": {

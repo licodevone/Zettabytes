@@ -1,6 +1,7 @@
 {
   "name": "@zettabytes/api",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "description": "Backend FastAPI do Zettabytes (gerenciado por uv, orquestrado pelo Turborepo).",
   "scripts": {

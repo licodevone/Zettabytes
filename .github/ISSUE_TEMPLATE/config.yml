@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🔒 Reportar vulnerabilidade
+    url: https://github.com/licodevone/Zettabytes/security/advisories/new
+    about: Falhas de segurança devem ser reportadas de forma privada.
+  - name: 💬 Dúvidas e ideias
+    url: https://github.com/licodevone/Zettabytes/discussions
+    about: Perguntas gerais e discussões de arquitetura.

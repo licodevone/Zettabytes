@@ -1,6 +1,7 @@
 {
   "name": "@zettabytes/api-client",
-  "version": "0.1.0",
+  "version": "1.0.0",
+  "license": "MIT",
   "private": true,
   "type": "module",
   "description": "Client HTTP tipado gerado a partir do OpenAPI do FastAPI (fonte única da verdade).",

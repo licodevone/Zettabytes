@@ -1,0 +1,55 @@
+name: 🐞 Bug report
+description: Algo não funciona como deveria.
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por reportar! Vulnerabilidades de segurança **não** devem ser abertas aqui: siga o [SECURITY.md](https://github.com/licodevone/Zettabytes/blob/master/SECURITY.md).
+  - type: textarea
+    id: description
+    attributes:
+      label: O que aconteceu?
+      description: Descreva o problema e o comportamento esperado.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Passos para reproduzir
+      placeholder: |
+        1. `pnpm dev`
+        2. POST /api/v1/auth/register com ...
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs e mensagens de erro
+      render: shell
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área afetada
+      options:
+        - API (backend)
+        - Web (frontend)
+        - api-client
+        - Banco de dados / migrations
+        - Infra / Docker
+        - Documentação
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: Versão / branch
+      placeholder: v1.0.0 ou release/v1.1
+    validations:
+      required: true
+  - type: input
+    id: env
+    attributes:
+      label: Ambiente
+      placeholder: "Windows 11, Node 22, Python 3.12, pnpm 10"

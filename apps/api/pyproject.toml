@@ -1,7 +1,9 @@
 [project]
 name = "zettabytes-api"
-version = "0.1.0"
+version = "1.0.0"
 description = "Zettabytes — backend FastAPI (multi-tenant, WhatsApp Cloud API, agentes de IA)"
+license = "MIT"
+authors = [{ name = "Luis E. S. Pinheiro" }]
 requires-python = ">=3.12"
 dependencies = [
     "fastapi[standard]>=0.115",
