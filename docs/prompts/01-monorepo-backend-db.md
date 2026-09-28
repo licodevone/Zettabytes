@@ -3,7 +3,7 @@
 > Status: implementado neste repositório. Resultado: 13 testes de integração passando, ruff e mypy strict limpos, `alembic check` sem drift e `pnpm dev` sobe API + Web.
 
 ```text
-Atue como Arquiteto de Software Sênior. Leia docs/ARCHITECTURE.md e implemente a fundação do Zettachat:
+Atue como Arquiteto de Software Sênior. Leia docs/ARCHITECTURE.md e implemente a fundação do Zettabytes:
 
 1. MONOREPO: Turborepo + pnpm workspaces (apps/api, apps/web, packages/api-client,
    packages/typescript-config). turbo.json com pipeline openapi -> generate -> typecheck/build/dev.

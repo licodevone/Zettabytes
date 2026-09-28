@@ -1861,7 +1861,7 @@ wheels = [
 ]
 
 [[package]]
-name = "zettachat-api"
+name = "zettabytes-api"
 version = "0.1.0"
 source = { virtual = "." }
 dependencies = [

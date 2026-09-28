@@ -1,4 +1,4 @@
-# Zettachat
+# Zettabytes
 
 Automação de WhatsApp com fluxos visuais e agentes de IA generativa, no modelo **Meta Tech Provider**.
 
@@ -15,7 +15,7 @@ Node 22+, pnpm 10+, Python 3.12+ com [uv](https://docs.astral.sh/uv/) e Docker.
 cp .env.example .env        # gere JWT_SECRET_KEY e ENCRYPTION_KEY (comandos no arquivo)
 pnpm install
 pnpm db:up                  # Postgres 17 + pgvector (porta 5442) e Redis
-pnpm setup                  # uv sync do backend
+pnpm bootstrap              # uv sync do backend (obs.: `pnpm setup` é comando nativo do pnpm)
 pnpm db:seed                # aplica as migrations e cria os planos
 pnpm dev                    # API + Web juntos
 ```
@@ -34,12 +34,12 @@ As portas 3100, 8100 e 5442 fogem das padrões para não colidir com outros proj
 | Comando | O que faz |
 |---|---|
 | `pnpm dev` | exporta o OpenAPI, gera o client TS e sobe API + Web |
-| `pnpm test` | pytest (Postgres real, banco `zettachat_test`) |
+| `pnpm test` | pytest (Postgres real, banco `zettabytes_test`) |
 | `pnpm typecheck` | mypy strict (API) + tsc (Web e pacotes) |
 | `pnpm lint` | ruff |
 | `pnpm codegen` | regenera `packages/api-client` a partir do FastAPI |
 | `pnpm db:migrate` | `alembic upgrade head` |
-| `pnpm --filter @zettachat/api db:revision "mensagem"` | nova migration (autogenerate) |
+| `pnpm --filter @zettabytes/api db:revision "mensagem"` | nova migration (autogenerate) |
 
 ## Estrutura
 

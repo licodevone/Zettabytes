@@ -19,7 +19,7 @@ def build_engine(url: str | None = None) -> AsyncEngine:
         pool_recycle=settings.DB_POOL_RECYCLE_SECONDS,
         pool_pre_ping=True,
         connect_args={
-            "server_settings": {"application_name": "zettachat-api", "timezone": "UTC"},
+            "server_settings": {"application_name": "zettabytes-api", "timezone": "UTC"},
         },
     )
 

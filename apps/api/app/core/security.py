@@ -19,7 +19,7 @@ password_hash = PasswordHash.recommended()
 
 # Hash "fantasma" usado quando o usuário não existe, para que o tempo de resposta do login
 # seja o mesmo com e sem usuário válido (mitiga enumeração de e-mails por timing).
-_DUMMY_HASH = password_hash.hash("zettachat-timing-attack-dummy-password")
+_DUMMY_HASH = password_hash.hash("zettabytes-timing-attack-dummy-password")
 
 
 def hash_password(password: str) -> str:

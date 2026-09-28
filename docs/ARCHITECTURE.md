@@ -1,4 +1,4 @@
-# Zettachat — Arquitetura (Etapa 1)
+# Zettabytes — Arquitetura (Etapa 1)
 
 > Plataforma SaaS de automação e chatbots com IA generativa para WhatsApp, no modelo **Meta Tech Provider**.
 > O cliente conecta a própria WABA via **Embedded Signup** e paga as conversas **direto à Meta**.
@@ -9,7 +9,7 @@
 ## 1. Monorepo (Turborepo + pnpm)
 
 ```
-zettachat/
+zettabytes/
 ├── apps/
 │   ├── api/                      # FastAPI (Python, gerenciado por uv, orquestrado via package.json)
 │   │   ├── app/
@@ -75,10 +75,10 @@ O efeito é: `chat_sessions.mode = human`, `status = pending`, `ai_paused_until`
 
 | Servidor / grupo | Tipo | Tools |
 |---|---|---|
-| `zettachat-knowledge` | Skill interna (MCP-compatível) | `rag.search(query, k, filters)` com busca híbrida pgvector (cosine, HNSW) + full-text e re-rank; `rag.get_document` |
-| `zettachat-whatsapp` | Skill interna sobre a Cloud API | `wa.send_text`, `wa.send_media`, `wa.send_interactive` (botões/lista), `wa.send_template` (fora da janela de 24h), `wa.mark_read`, `wa.typing` |
-| `zettachat-crm` | Skill interna | `contact.get`, `contact.update_attributes`, `contact.add_tag`, `session.get_history`, `session.summarize` |
-| `zettachat-flow` | Skill interna | `flow.trigger(flow_id)`, `flow.set_variable`: permite que a IA "devolva" a conversa a um fluxo determinístico |
+| `zettabytes-knowledge` | Skill interna (MCP-compatível) | `rag.search(query, k, filters)` com busca híbrida pgvector (cosine, HNSW) + full-text e re-rank; `rag.get_document` |
+| `zettabytes-whatsapp` | Skill interna sobre a Cloud API | `wa.send_text`, `wa.send_media`, `wa.send_interactive` (botões/lista), `wa.send_template` (fora da janela de 24h), `wa.mark_read`, `wa.typing` |
+| `zettabytes-crm` | Skill interna | `contact.get`, `contact.update_attributes`, `contact.add_tag`, `session.get_history`, `session.summarize` |
+| `zettabytes-flow` | Skill interna | `flow.trigger(flow_id)`, `flow.set_variable`: permite que a IA "devolva" a conversa a um fluxo determinístico |
 | `handoff` | Skill interna | `handoff.request(reason)`, `handoff.assign(user_id)` |
 | Google Calendar / Cal.com | MCP externo | `calendar.availability`, `calendar.book`, `calendar.cancel` |
 | Stripe / Mercado Pago / Asaas (do cliente) | MCP externo | `payment.create_link`, `order.lookup` |

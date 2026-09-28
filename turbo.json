@@ -17,7 +17,7 @@
     },
     "generate": {
       "dependsOn": [
-        "@zettachat/api#openapi"
+        "@zettabytes/api#openapi"
       ],
       "inputs": [
         "openapi.json"

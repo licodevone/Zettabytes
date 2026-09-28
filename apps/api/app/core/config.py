@@ -26,17 +26,17 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    PROJECT_NAME: str = "Zettachat API"
+    PROJECT_NAME: str = "Zettabytes API"
     VERSION: str = "0.1.0"
     ENVIRONMENT: Environment = Environment.DEVELOPMENT
     API_V1_PREFIX: str = "/api/v1"
 
     # ─── Banco de dados ──────────────────────────────────────
     DATABASE_URL: PostgresDsn = PostgresDsn(
-        "postgresql+asyncpg://zettachat:zettachat@localhost:5442/zettachat"
+        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/zettabytes"
     )
     TEST_DATABASE_URL: PostgresDsn = PostgresDsn(
-        "postgresql+asyncpg://zettachat:zettachat@localhost:5442/zettachat_test"
+        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/zettabytes_test"
     )
     DB_POOL_SIZE: int = 10
     DB_MAX_OVERFLOW: int = 20
@@ -46,7 +46,7 @@ class Settings(BaseSettings):
     # ─── Segurança / JWT ─────────────────────────────────────
     JWT_SECRET_KEY: SecretStr = SecretStr("dev-insecure-secret-change-me-" + "x" * 32)
     JWT_ALGORITHM: str = "HS256"
-    JWT_ISSUER: str = "zettachat"
+    JWT_ISSUER: str = "zettabytes"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
     # Chave Fernet para criptografar segredos em repouso (tokens da Meta).

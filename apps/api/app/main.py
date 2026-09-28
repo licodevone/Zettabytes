@@ -16,7 +16,7 @@ from app.core.config import settings
 from app.core.exceptions import DomainError
 from app.db.session import engine
 
-logger = logging.getLogger("zettachat")
+logger = logging.getLogger("zettabytes")
 
 OPENAPI_TAGS = [
     {"name": "Health", "description": "Verificações de liveness/readiness."},
@@ -32,7 +32,7 @@ OPENAPI_TAGS = [
 @asynccontextmanager
 async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     settings.validate_for_production()
-    logger.info("Zettachat API iniciando (%s)", settings.ENVIRONMENT.value)
+    logger.info("Zettabytes API iniciando (%s)", settings.ENVIRONMENT.value)
     yield
     await engine.dispose()
 

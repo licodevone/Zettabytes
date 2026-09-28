@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Zettachat",
+  title: "Zettabytes",
   description: "Automação de WhatsApp com fluxos e agentes de IA.",
 };
 

@@ -1,4 +1,4 @@
 {
-  "extends": "@zettachat/typescript-config/library.json",
+  "extends": "@zettabytes/typescript-config/library.json",
   "include": ["src"]
 }

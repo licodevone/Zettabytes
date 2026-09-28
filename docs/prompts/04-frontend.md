@@ -2,14 +2,14 @@
 
 ```text
 Atue como Engenheiro Frontend Sênior e Product Designer. Em apps/web (Next.js 16 App Router,
-React 19, TypeScript strict), construa a interface do Zettachat seguindo docs/ARCHITECTURE.md §5:
+React 19, TypeScript strict), construa a interface do Zettabytes seguindo docs/ARCHITECTURE.md §5:
 
 1. FUNDAÇÃO
    - Tailwind CSS v4 + shadcn/ui (componentes base em packages/ui).
    - Design tokens em OKLCH com dark mode elegante como padrão (next-themes, sem flash); Geist Sans/Mono.
    - Estética Vercel/Linear: bordas 1px, sem sombras pesadas, raio 8px, densidade alta, foco
      visível, motion sutil (respeitando prefers-reduced-motion).
-   - Dados: @zettachat/api-client (openapi-fetch tipado) + TanStack Query. Access token em memória
+   - Dados: @zettabytes/api-client (openapi-fetch tipado) + TanStack Query. Access token em memória
      e refresh token em cookie httpOnly via Route Handler (BFF); middleware protegendo /app/*;
      tenant ativo enviado no header X-Company-ID.
    - Shell: sidebar colapsável, seletor de empresa, breadcrumbs, Command Palette (cmdk, Cmd+K), toasts (sonner).

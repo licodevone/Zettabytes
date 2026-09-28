@@ -1,4 +1,4 @@
-name: zettachat
+name: zettabytes
 
 services:
   postgres:
@@ -6,16 +6,16 @@ services:
     image: pgvector/pgvector:pg17
     restart: unless-stopped
     environment:
-      POSTGRES_USER: zettachat
-      POSTGRES_PASSWORD: zettachat
-      POSTGRES_DB: zettachat
+      POSTGRES_USER: zettabytes
+      POSTGRES_PASSWORD: zettabytes
+      POSTGRES_DB: zettabytes
     ports:
       - "${POSTGRES_PORT:-5442}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U zettachat -d zettachat"]
+      test: ["CMD-SHELL", "pg_isready -U zettabytes -d zettabytes"]
       interval: 5s
       timeout: 5s
       retries: 10
