@@ -1,0 +1,36 @@
+name: zettachat
+
+services:
+  postgres:
+    # PostgreSQL 17 com a extensão pgvector (embeddings do RAG).
+    image: pgvector/pgvector:pg17
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: zettachat
+      POSTGRES_PASSWORD: zettachat
+      POSTGRES_DB: zettachat
+    ports:
+      - "${POSTGRES_PORT:-5442}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U zettachat -d zettachat"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    # Filas (webhooks da Meta), rate limiting e cache de sessão — usado a partir do Prompt 2.
+    image: redis:7-alpine
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:

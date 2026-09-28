@@ -1,0 +1,29 @@
+{
+  "name": "zettachat",
+  "private": true,
+  "description": "Zettachat — plataforma SaaS de automação e chatbots com IA generativa para WhatsApp (Meta Tech Provider).",
+  "packageManager": "pnpm@12.4.2",
+  "engines": {
+    "node": ">=22",
+    "pnpm": ">=10"
+  },
+  "scripts": {
+    "dev": "turbo run dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "setup": "turbo run setup",
+    "codegen": "turbo run generate",
+    "db:up": "docker compose up -d --wait",
+    "db:down": "docker compose down",
+    "db:migrate": "turbo run db:migrate --filter=@zettachat/api",
+    "db:seed": "turbo run db:seed --filter=@zettachat/api",
+    "format": "prettier --write \"**/*.{ts,tsx,js,mjs,json,md,css}\""
+  },
+  "devDependencies": {
+    "prettier": "^3.6.0",
+    "turbo": "^2.5.0",
+    "typescript": "^5.9.3"
+  }
+}

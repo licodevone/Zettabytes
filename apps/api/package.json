@@ -1,0 +1,19 @@
+{
+  "name": "@zettachat/api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Backend FastAPI do Zettachat (gerenciado por uv, orquestrado pelo Turborepo).",
+  "scripts": {
+    "setup": "uv sync",
+    "dev": "uv run uvicorn app.main:app --reload --host 0.0.0.0 --port 8100",
+    "start": "uv run uvicorn app.main:app --host 0.0.0.0 --port 8100 --workers 4 --proxy-headers",
+    "lint": "uv run ruff check . && uv run ruff format --check .",
+    "format": "uv run ruff format . && uv run ruff check --fix .",
+    "typecheck": "uv run mypy app",
+    "test": "uv run pytest",
+    "openapi": "uv run python -m app.scripts.export_openapi ../../packages/api-client/openapi.json",
+    "db:migrate": "uv run alembic upgrade head",
+    "db:revision": "uv run alembic revision --autogenerate -m",
+    "db:seed": "uv run python -m app.scripts.seed"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@zettachat/api-client",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Client HTTP tipado gerado a partir do OpenAPI do FastAPI (fonte única da verdade).",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "generate": "openapi-typescript openapi.json -o src/schema.d.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@zettachat/typescript-config": "workspace:*",
+    "openapi-typescript": "^7.13.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "openapi-fetch": "^0.17.0"
+  }
+}

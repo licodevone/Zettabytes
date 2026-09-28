@@ -1,0 +1,4 @@
+{
+  "extends": "@zettachat/typescript-config/library.json",
+  "include": ["src"]
+}
