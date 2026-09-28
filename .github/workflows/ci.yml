@@ -43,6 +43,8 @@ jobs:
         with:
           python-version: "3.12"
           enable-cache: true
+          # O uv usa o cache do próprio projeto; sem isso o passo "Post" falha com cache vazio.
+          ignore-nothing-to-cache: true
 
       - run: pnpm install --frozen-lockfile
       - run: pnpm bootstrap
