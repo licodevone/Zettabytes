@@ -141,7 +141,7 @@ Para quebras de compatibilidade, use `!` (`feat(api)!: …`) e descreva o impact
 - Enums são `StrEnum` em `app/models/enums.py`, gravados como `VARCHAR`: adicionar valores não exige migration.
 - Segredos em repouso usam o `TypeDecorator` de criptografia (Fernet), nunca texto puro.
 - Erros de domínio herdam de `DomainError` (`app/core/exceptions.py`).
-- Testes de integração rodam contra Postgres real (`zettabytes_test`). Use as fixtures `client`, `db`, `plans` e os helpers `register()` e `auth()` de `tests/conftest.py`.
+- Testes de integração rodam contra Postgres real (`acmebr_zettabytes_test`). Use as fixtures `client`, `db`, `plans` e os helpers `register()` e `auth()` de `tests/conftest.py`.
 
 ### Frontend (TypeScript)
 

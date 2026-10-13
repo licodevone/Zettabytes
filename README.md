@@ -185,8 +185,8 @@ Todas ficam no `.env` da raiz (modelo em [`.env.example`](.env.example)).
 | Variável | Padrão | Descrição |
 |---|---|---|
 | `ENVIRONMENT` | `development` | `development`, `test`, `staging` ou `production` |
-| `DATABASE_URL` | `postgresql+asyncpg://…:5442/zettabytes` | Banco principal |
-| `TEST_DATABASE_URL` | `…/zettabytes_test` | Banco da suíte de testes |
+| `DATABASE_URL` | `postgresql+asyncpg://…:5442/acmebr_zettabytes` | Banco principal |
+| `TEST_DATABASE_URL` | `…/acmebr_zettabytes_test` | Banco da suíte de testes |
 | `REDIS_URL` | `redis://localhost:6379/0` | Filas e cache |
 | `JWT_SECRET_KEY` | — | Segredo do JWT (mín. 32 caracteres). **Obrigatório em produção.** |
 | `JWT_ALGORITHM` | `HS256` | Algoritmo do JWT |
@@ -205,7 +205,7 @@ Em `production`, a API **se recusa a subir** com segredos padrão ou sem `ENCRYP
 |---|---|
 | `pnpm dev` | Exporta o OpenAPI, gera o client TS e sobe API + Web |
 | `pnpm build` | Build de produção |
-| `pnpm test` | pytest com Postgres real (banco `zettabytes_test`) |
+| `pnpm test` | pytest com Postgres real (banco `acmebr_zettabytes_test`) |
 | `pnpm typecheck` | mypy strict (API) + tsc (Web e pacotes) |
 | `pnpm lint` | ruff check + ruff format --check |
 | `pnpm format` | Prettier nos arquivos JS/TS/JSON/MD |

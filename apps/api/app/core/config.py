@@ -33,10 +33,10 @@ class Settings(BaseSettings):
 
     # ─── Banco de dados ──────────────────────────────────────
     DATABASE_URL: PostgresDsn = PostgresDsn(
-        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/zettabytes"
+        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/acmebr_zettabytes"
     )
     TEST_DATABASE_URL: PostgresDsn = PostgresDsn(
-        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/zettabytes_test"
+        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/acmebr_zettabytes_test"
     )
     DB_POOL_SIZE: int = 10
     DB_MAX_OVERFLOW: int = 20
