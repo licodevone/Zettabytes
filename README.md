@@ -377,3 +377,5 @@ Encontrou uma vulnerabilidade? **Não abra uma issue pública.** Veja como repor
 Distribuído sob a **licença MIT**. Você pode usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e vender cópias do software, desde que mantenha o aviso de copyright e a licença. Veja [LICENSE](LICENSE).
 
 Copyright © 2026 Luis E. S. Pinheiro e contribuidores do Zettabytes.
+
+Histórico de prompts, chats e planejamento: `../acmebr-docs/acmebr-zettabytes/`
