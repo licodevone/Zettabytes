@@ -6,7 +6,7 @@
 
 ARG NODE_VERSION=24
 # Mesma versão do `packageManager` do package.json da raiz.
-ARG PNPM_VERSION=12.4.2
+ARG PNPM_VERSION=12.11.2
 
 ############################ base ############################
 FROM node:${NODE_VERSION}-bookworm-slim AS base

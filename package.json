@@ -25,9 +25,9 @@
     "multi-tenant",
     "saas"
   ],
-  "packageManager": "pnpm@12.4.2",
+  "packageManager": "pnpm@12.11.2",
   "engines": {
-    "node": ">=22",
+    "node": ">=24 <27",
     "pnpm": ">=10"
   },
   "scripts": {
@@ -47,6 +47,7 @@
   "devDependencies": {
     "prettier": "^3.6.0",
     "turbo": "^2.5.0",
-    "typescript": "^5.9.3"
+    "@typescript/native": "npm:typescript@7.0.2",
+    "typescript": "npm:@typescript/typescript6@6.0.2"
   }
 }
