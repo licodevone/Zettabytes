@@ -1,0 +1,25 @@
+# Contexto dos builds em apps/*/Dockerfile (raiz do monorepo).
+**/node_modules
+**/.next
+**/dist
+**/out
+**/build
+**/target
+**/.turbo
+**/*.tsbuildinfo
+**/.venv
+**/__pycache__
+**/*.py[cod]
+**/.pytest_cache
+**/.ruff_cache
+**/.mypy_cache
+**/coverage
+.git
+.github
+.claude
+.codex
+.pnpm-store
+docs
+# Segredos nunca entram na imagem.
+**/.env
+**/.env.*
