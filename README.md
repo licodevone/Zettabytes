@@ -379,3 +379,29 @@ Distribuído sob a **licença MIT**. Você pode usar, copiar, modificar, mesclar
 Copyright © 2026 Luis E. S. Pinheiro e contribuidores do Zettabytes.
 
 Histórico de prompts, chats e planejamento: `../acmebr-docs/acmebr-zettabytes/`
+
+## Atendimento da landing page e WhatsApp próprio da ACMEbr
+
+A landing page `landpage.acmebr` usa `/api/v1/site/chat` com um `X-Site-Key` compartilhado. Configure `SITE_CHAT_KEY` no Acmebot e o mesmo valor como `ATENDIMENTOS_SITE_KEY` no servidor da landing page. O formulário de leads continua independente. O histórico e as respostas da equipe ficam no painel `/painel/atendimentos` da landing page, protegido por login.
+
+Para ativar o número próprio da ACMEbr na Cloud API, defina no servidor:
+
+- `WHATSAPP_NUMBER`: código do país, DDD e número; habilita o botão da landing page.
+- `WHATSAPP_PHONE_NUMBER_ID` e `WHATSAPP_WABA_ID`: identificadores da conta e do número na Meta.
+- `WHATSAPP_API_VERSION`: versão ativa no aplicativo da Meta, no formato `vN.N`.
+- `WHATSAPP_ACCESS_TOKEN`: token autorizado a enviar pelo número configurado.
+- `META_APP_SECRET`: segredo do aplicativo para verificar a assinatura dos eventos.
+- `META_WEBHOOK_VERIFY_TOKEN`: segredo escolhido para validar a inscrição do webhook.
+- `ENCRYPTION_KEY`: chave Fernet estável; o destinatário é criptografado no banco.
+
+Execute `uv run alembic upgrade head` antes de publicar a API. Cadastre como callback HTTPS `https://SEU-HOST/api/v1/webhooks/meta`, informe o verify token e assine o campo `messages` da WABA configurada. O GET devolve o challenge; o POST verifica `X-Hub-Signature-256` sobre os bytes originais e só processa a WABA e o número autorizados. Credenciais não são criadas nem configuradas na Meta por este código.
+
+Mensagens de texto e seleções de botões/listas recebem a triagem por regras da Acme, com apresentação de sistemas e pedido de atendente. Mídia é registrada como mensagem não processada e encaminhada à equipe, sem download nem transcrição. Ao entrar em modo humano, a Acme pausa respostas automáticas. As mensagens continuam no histórico e a equipe responde pelo painel. Dez respostas automáticas em um minuto por conversa encaminham os próximos detalhes à equipe.
+
+Eventos repetidos não duplicam mensagens nem respostas. O envio grava um estado antes de chamar a Cloud API; falhas confirmadas ficam como `failed`, e timeouts/erros ambíguos como `unknown`. Esses envios não são repetidos automaticamente: confira a conversa no WhatsApp antes de decidir reenviar. Se um processo encerrar durante a chamada, `sending` também exige conferência. `sent` significa aceitação pela Meta; `delivered` e `read` dependem dos eventos de status. O processamento ocorre no request, adequado a este canal inicial de baixo volume; não há worker de reenvio ou campanhas.
+
+Respostas livres só são enviadas dentro de 24 horas da última mensagem recebida. Eventos antigos não reabrem essa janela. Fora dela, aguarde uma nova mensagem do cliente; este fluxo não envia templates. As conversas têm acesso limitado a 30 dias desde a última mensagem no WhatsApp; a expiração não executa exclusão física do banco. O canal próprio é separado das futuras conexões multi-tenant por Embedded Signup.
+
+Validação local: `uv run pytest`, `uv run ruff check app tests tests_site` e `uv run mypy app`. Os testes usam o PostgreSQL de testes e interceptam todo envio à Meta; não enviam mensagens reais. A ativação final exige um teste no número autorizado após configurar e publicar o webhook.
+
+Referências: [recepção de mensagens da Meta](https://github.com/WhatsApp/WhatsApp-Nodejs-SDK/blob/main/website/docs/receivingMessages.md), [formato do envio](https://github.com/WhatsApp/WhatsApp-Nodejs-SDK/blob/main/src/api/messages.ts), [clique para conversar](https://faq.whatsapp.com/5913398998672934/?locale=pt_BR).

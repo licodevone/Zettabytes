@@ -7,6 +7,7 @@ from app.models.chat import ChatSession, Message
 from app.models.company import Company
 from app.models.contact import Contact
 from app.models.flow import Edge, Flow, Node
+from app.models.site_chat import SiteConversation, SiteMessage
 from app.models.user import Membership, RefreshToken, User
 from app.models.whatsapp import WhatsAppConnection
 
@@ -27,6 +28,8 @@ __all__ = [
     "Node",
     "Plan",
     "RefreshToken",
+    "SiteConversation",
+    "SiteMessage",
     "Subscription",
     "UsageCounter",
     "User",

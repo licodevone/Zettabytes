@@ -20,6 +20,7 @@ dependencies = [
     "cryptography>=43",
     "python-multipart>=0.0.17",
     "scalar-fastapi>=1.0.3",
+    "httpx>=0.28",
 ]
 
 [dependency-groups]
@@ -38,7 +39,8 @@ package = false
 asyncio_mode = "auto"
 asyncio_default_fixture_loop_scope = "session"
 asyncio_default_test_loop_scope = "session"
-testpaths = ["tests"]
+testpaths = ["tests", "tests_site"]
+pythonpath = ["."]
 
 [tool.ruff]
 line-length = 100

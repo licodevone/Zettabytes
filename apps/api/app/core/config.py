@@ -31,6 +31,43 @@ class Settings(BaseSettings):
     ENVIRONMENT: Environment = Environment.DEVELOPMENT
     API_V1_PREFIX: str = "/api/v1"
 
+    SITE_CHAT_KEY: SecretStr | None = None
+    SITE_SLUG: str = "acmebr"
+    # Canal próprio da ACMEbr. Não conecta números de outros tenants.
+    WHATSAPP_NUMBER: str | None = None
+    WHATSAPP_PHONE_NUMBER_ID: str | None = Field(default=None, pattern=r"^\d+$")
+    WHATSAPP_WABA_ID: str | None = Field(default=None, pattern=r"^\d+$")
+    WHATSAPP_API_VERSION: str | None = Field(default=None, pattern=r"^v\d+\.\d+$")
+    WHATSAPP_ACCESS_TOKEN: SecretStr | None = None
+    META_APP_SECRET: SecretStr | None = None
+    META_WEBHOOK_VERIFY_TOKEN: SecretStr | None = None
+
+    @field_validator(
+        "SITE_CHAT_KEY",
+        "WHATSAPP_PHONE_NUMBER_ID",
+        "WHATSAPP_WABA_ID",
+        "WHATSAPP_API_VERSION",
+        "WHATSAPP_ACCESS_TOKEN",
+        "META_APP_SECRET",
+        "META_WEBHOOK_VERIFY_TOKEN",
+        mode="before",
+    )
+    @classmethod
+    def _empty_channel_setting(cls, value: object) -> object:
+        return None if value == "" else value
+
+    @field_validator("WHATSAPP_NUMBER", mode="before")
+    @classmethod
+    def _whatsapp_number(cls, value: object) -> str | None:
+        if not value:
+            return None
+        import re
+
+        number = re.sub(r"[\s()+.\-]", "", str(value))
+        if not re.fullmatch(r"[1-9]\d{7,14}", number):
+            raise ValueError("WHATSAPP_NUMBER deve incluir o código do país e DDD")
+        return number
+
     # ─── Banco de dados ──────────────────────────────────────
     DATABASE_URL: PostgresDsn = PostgresDsn(
         "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/acmebr_zettabytes"
