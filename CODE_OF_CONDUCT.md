@@ -4,7 +4,7 @@ Este projeto adota o [Contributor Covenant 2.1](https://www.contributor-covenant
 
 ## Nosso compromisso
 
-Queremos que participar do Zettabytes seja uma experiência livre de assédio para todas as pessoas, independentemente de idade, corpo, deficiência, etnia, identidade ou expressão de gênero, nível de experiência, escolaridade, situação socioeconômica, nacionalidade, aparência, raça, religião ou orientação sexual.
+Queremos que participar do Acmebot seja uma experiência livre de assédio para todas as pessoas, independentemente de idade, corpo, deficiência, etnia, identidade ou expressão de gênero, nível de experiência, escolaridade, situação socioeconômica, nacionalidade, aparência, raça, religião ou orientação sexual.
 
 ## Comportamentos esperados
 
@@ -24,6 +24,6 @@ Queremos que participar do Zettabytes seja uma experiência livre de assédio pa
 
 ## Aplicação
 
-Casos de comportamento abusivo podem ser reportados às pessoas mantenedoras pelo [reporte privado do GitHub](https://github.com/licodevone/Zettabytes/security/advisories/new) ou abrindo contato direto com o mantenedor pelo perfil [@licodevone](https://github.com/licodevone). Todas as denúncias serão analisadas com sigilo.
+Casos de comportamento abusivo podem ser reportados às pessoas mantenedoras por contato direto com o mantenedor pelo perfil [@licodevone](https://github.com/licodevone). Todas as denúncias serão analisadas com sigilo.
 
 As consequências seguem as diretrizes do Contributor Covenant: correção, advertência, banimento temporário ou banimento permanente.

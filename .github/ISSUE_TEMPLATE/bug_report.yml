@@ -5,7 +5,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Obrigado por reportar! Vulnerabilidades de segurança **não** devem ser abertas aqui: siga o [SECURITY.md](https://github.com/licodevone/Zettabytes/blob/master/SECURITY.md).
+        Obrigado por reportar! Vulnerabilidades de segurança **não** devem ser abertas aqui: siga o arquivo SECURITY.md na raiz do repositório.
   - type: textarea
     id: description
     attributes:
@@ -52,4 +52,4 @@ body:
     id: env
     attributes:
       label: Ambiente
-      placeholder: "Windows 11, Node 22, Python 3.12, pnpm 10"
+      placeholder: "Windows 11, Node 24, Python 3.12, pnpm 10"

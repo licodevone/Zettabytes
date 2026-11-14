@@ -1,6 +1,6 @@
 <div align="center">
 
-# Zettabytes
+# Acmebot
 
 **Plataforma open source de automação de WhatsApp com fluxos visuais e agentes de IA generativa.**
 
@@ -8,7 +8,6 @@ Multi-tenant, no modelo **Meta Tech Provider**: cada cliente conecta a própria 
 
 [![Versão](https://img.shields.io/badge/versão-1.0.0-2563eb)](CHANGELOG.md)
 [![Licença: MIT](https://img.shields.io/badge/licença-MIT-16a34a)](LICENSE)
-[![CI](https://github.com/licodevone/Zettabytes/actions/workflows/ci.yml/badge.svg)](https://github.com/licodevone/Zettabytes/actions/workflows/ci.yml)
 [![PRs bem-vindos](https://img.shields.io/badge/PRs-bem--vindos-f97316)](CONTRIBUTING.md)
 
 ![Python](https://img.shields.io/badge/Python-3.12+-3776AB?logo=python&logoColor=white)
@@ -45,7 +44,7 @@ Multi-tenant, no modelo **Meta Tech Provider**: cada cliente conecta a própria 
 
 ## Visão geral
 
-O Zettabytes é uma base SaaS para empresas atenderem clientes no WhatsApp combinando três formas de conversa:
+O Acmebot é uma base SaaS para empresas atenderem clientes no WhatsApp combinando três formas de conversa:
 
 | Modo | Como funciona |
 |---|---|
@@ -100,7 +99,7 @@ flowchart LR
         Web[Painel Web<br/>Next.js]
     end
 
-    subgraph Zettabytes
+    subgraph Acmebot
         API[API FastAPI]
         Worker[Workers<br/>webhooks, RAG]
         Engine[Agent Engine<br/>skills + MCP]
@@ -128,7 +127,7 @@ Na v1.0 estão prontos a API, o banco e o painel web; workers, Agent Engine e as
 
 | Ferramenta | Versão |
 |---|---|
-| [Node.js](https://nodejs.org/) | 22+ |
+| [Node.js](https://nodejs.org/) | 24 a 26 |
 | [pnpm](https://pnpm.io/) | 10+ (`corepack enable`) |
 | [Python](https://www.python.org/) | 3.12+ |
 | [uv](https://docs.astral.sh/uv/) | recente |
@@ -138,8 +137,8 @@ Na v1.0 estão prontos a API, o banco e o painel web; workers, Agent Engine e as
 
 ```bash
 # 1. Clone
-git clone https://github.com/licodevone/Zettabytes.git
-cd Zettabytes
+git clone <URL_DO_SEU_REPOSITORIO> acme-bot
+cd acme-bot
 
 # 2. Configure o ambiente (gere JWT_SECRET_KEY e ENCRYPTION_KEY com os comandos do arquivo)
 cp .env.example .env
@@ -167,6 +166,13 @@ pnpm dev
 
 As portas 3100, 8100 e 5442 fogem das padrões para não colidir com outros projetos locais.
 
+A rede Docker usa a sub-rede `10.203.0.0/24`, configurável por `DOCKER_SUBNET` no `.env`.
+Se houver conflito com uma rede local ou VPN, escolha outra faixa livre antes de `pnpm db:up`.
+Os dados do PostgreSQL ficam no volume `acme-bot-postgres-data`.
+
+Após mover ou renomear a pasta do projeto, recrie os executáveis do ambiente Python com
+`pnpm --filter @acme-bot/api exec uv sync --reinstall` caso ainda apontem para o caminho antigo.
+
 ### Primeiro teste
 
 ```bash
@@ -185,8 +191,8 @@ Todas ficam no `.env` da raiz (modelo em [`.env.example`](.env.example)).
 | Variável | Padrão | Descrição |
 |---|---|---|
 | `ENVIRONMENT` | `development` | `development`, `test`, `staging` ou `production` |
-| `DATABASE_URL` | `postgresql+asyncpg://…:5442/acmebr_zettabytes` | Banco principal |
-| `TEST_DATABASE_URL` | `…/acmebr_zettabytes_test` | Banco da suíte de testes |
+| `DATABASE_URL` | `postgresql+asyncpg://…:5442/acmebr` | Banco principal |
+| `TEST_DATABASE_URL` | `…/acmebr_test` | Banco da suíte de testes |
 | `REDIS_URL` | `redis://localhost:6379/0` | Filas e cache |
 | `JWT_SECRET_KEY` | — | Segredo do JWT (mín. 32 caracteres). **Obrigatório em produção.** |
 | `JWT_ALGORITHM` | `HS256` | Algoritmo do JWT |
@@ -196,6 +202,8 @@ Todas ficam no `.env` da raiz (modelo em [`.env.example`](.env.example)).
 | `CORS_ORIGINS` | `["http://localhost:3100"]` | Origens permitidas (JSON ou separadas por vírgula) |
 | `NEXT_PUBLIC_API_URL` | `http://localhost:8100` | URL da API usada pelo frontend |
 | `POSTGRES_PORT` / `REDIS_PORT` | `5442` / `6379` | Portas publicadas pelo Docker Compose |
+| `POSTGRES_PASSWORD` | `acmebr` | Senha local do PostgreSQL; deve coincidir com as URLs de banco |
+| `DOCKER_SUBNET` | `10.203.0.0/24` | Sub-rede da rede Docker do projeto |
 
 Em `production`, a API **se recusa a subir** com segredos padrão ou sem `ENCRYPTION_KEY`.
 
@@ -205,7 +213,7 @@ Em `production`, a API **se recusa a subir** com segredos padrão ou sem `ENCRYP
 |---|---|
 | `pnpm dev` | Exporta o OpenAPI, gera o client TS e sobe API + Web |
 | `pnpm build` | Build de produção |
-| `pnpm test` | pytest com Postgres real (banco `acmebr_zettabytes_test`) |
+| `pnpm test` | pytest com Postgres real (banco `acmebr_test`) |
 | `pnpm typecheck` | mypy strict (API) + tsc (Web e pacotes) |
 | `pnpm lint` | ruff check + ruff format --check |
 | `pnpm format` | Prettier nos arquivos JS/TS/JSON/MD |
@@ -213,12 +221,12 @@ Em `production`, a API **se recusa a subir** com segredos padrão ou sem `ENCRYP
 | `pnpm db:up` / `pnpm db:down` | Sobe / derruba Postgres e Redis |
 | `pnpm db:migrate` | `alembic upgrade head` |
 | `pnpm db:seed` | Migrations + planos (`starter`, `pro`, `scale`) |
-| `pnpm --filter @zettabytes/api db:revision "mensagem"` | Nova migration (autogenerate) |
+| `pnpm --filter @acme-bot/api db:revision "mensagem"` | Nova migration (autogenerate) |
 
 ## Estrutura do repositório
 
 ```
-Zettabytes/
+Acmebot/
 ├── apps/
 │   ├── api/                        # Backend FastAPI (Python/uv, orquestrado pelo Turbo)
 │   │   ├── app/
@@ -284,7 +292,7 @@ class Tag(UUIDPrimaryKeyMixin, TimestampMixin, TenantMixin, Base):
 **2. Migration**, sempre revisada à mão:
 
 ```bash
-pnpm --filter @zettabytes/api db:revision "add tags"
+pnpm --filter @acme-bot/api db:revision "add tags"
 pnpm db:migrate
 ```
 
@@ -376,9 +384,9 @@ Encontrou uma vulnerabilidade? **Não abra uma issue pública.** Veja como repor
 
 Distribuído sob a **licença MIT**. Você pode usar, copiar, modificar, mesclar, publicar, distribuir, sublicenciar e vender cópias do software, desde que mantenha o aviso de copyright e a licença. Veja [LICENSE](LICENSE).
 
-Copyright © 2026 Luis E. S. Pinheiro e contribuidores do Zettabytes.
+Copyright © 2026 Luis E. S. Pinheiro e contribuidores do Acmebot.
 
-Histórico de prompts, chats e planejamento: `../acmebr-docs/acmebr-zettabytes/`
+Histórico das sessões deste projeto: `docs/chats/`.
 
 ## Atendimento da landing page e WhatsApp próprio da ACMEbr
 

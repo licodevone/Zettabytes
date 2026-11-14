@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
-  title: "Zettabytes",
-  description: "Automação de WhatsApp com fluxos e agentes de IA.",
+  title: "ACMEbr | Atendimentos",
+  description: "Atendimento da ACMEbr com a assistente Acme e nossa equipe.",
 };
 
 // Shell provisório: o design system (Tailwind + shadcn/ui + dark mode) chega no Prompt 4.

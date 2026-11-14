@@ -1,16 +1,22 @@
 # Changelog
 
-Todas as mudanças relevantes do Zettabytes são registradas aqui.
+Todas as mudanças relevantes do Acmebot são registradas aqui.
 
 O formato segue o [Keep a Changelog](https://keepachangelog.com/pt-BR/1.1.0/) e o projeto adota o [Versionamento Semântico](https://semver.org/lang/pt-BR/).
 
-## [Não lançado]
+## Não lançado
 
 ### Corrigido
 
+- Configuração local do PostgreSQL, rede Docker com sub-rede configurável e Node 24 no CI.
+- Testes de integração executados sem cache para validar o estado atual do banco.
 - CI: o passo de cache do `setup-uv` não falha mais quando não há dependências para salvar.
 
-## [1.0.0] - 2026-09-28
+### Alterado
+
+- Identidade do projeto atualizada para Acmebot na interface, API, pacotes e documentação.
+
+## 1.0.0 - 2026-09-28
 
 Primeira versão pública, sob licença MIT. Entrega a fundação do sistema (Prompt 1 de [`docs/prompts`](docs/prompts)).
 
@@ -30,6 +36,3 @@ Primeira versão pública, sob licença MIT. Entrega a fundação do sistema (Pr
 - Docker Compose com PostgreSQL 17 + pgvector e Redis 7.
 - Suíte de testes de integração com Postgres real.
 - Licença MIT, guia de contribuição, código de conduta, política de segurança e templates de issue/PR.
-
-[Não lançado]: https://github.com/licodevone/Zettabytes/compare/v1.0.0...HEAD
-[1.0.0]: https://github.com/licodevone/Zettabytes/releases/tag/v1.0.0

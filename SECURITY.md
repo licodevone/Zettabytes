@@ -11,7 +11,7 @@
 
 **Não abra uma issue pública** para falhas de segurança.
 
-Use o [reporte privado de vulnerabilidades do GitHub](https://github.com/licodevone/Zettabytes/security/advisories/new) e inclua:
+Entre em contato com o [mantenedor](https://github.com/licodevone) para combinar um canal privado de reporte e inclua:
 
 - descrição do problema e impacto esperado;
 - passos para reproduzir (ou uma prova de conceito);

@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1.7
-# Web do Zettabytes — Next.js 16 (standalone) em monorepo pnpm, Node 24.
+# Web do Acmebot — Next.js 16 (standalone) em monorepo pnpm, Node 24.
 # Modelo: acmebr-infra/dockerfiles/node-next.Dockerfile
 # Contexto = RAIZ do monorepo:
-#   docker build -f apps/web/Dockerfile --build-arg NEXT_PUBLIC_API_URL=http://localhost:8100 -t acmebr/zettabytes-web .
+#   docker build -f apps/web/Dockerfile --build-arg NEXT_PUBLIC_API_URL=http://localhost:8100 -t acmebr/acme-bot-web .
 
 ARG NODE_VERSION=24
 # Mesma versão do `packageManager` do package.json da raiz.
@@ -23,7 +23,7 @@ COPY apps/api/package.json apps/api/
 COPY packages/api-client/package.json packages/api-client/
 COPY packages/typescript-config/package.json packages/typescript-config/
 RUN --mount=type=cache,id=pnpm,target=/pnpm/store \
-    pnpm install --frozen-lockfile --store-dir /pnpm/store --filter "@zettabytes/web..."
+    pnpm install --frozen-lockfile --store-dir /pnpm/store --filter "@acme-bot/web..."
 
 COPY apps/web apps/web
 COPY packages/api-client packages/api-client
@@ -32,11 +32,11 @@ COPY packages/typescript-config packages/typescript-config
 # Públicas = resolvidas no build (uma imagem por ambiente).
 ARG NEXT_PUBLIC_API_URL=http://localhost:8100
 ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
-RUN pnpm --filter @zettabytes/web build
+RUN pnpm --filter @acme-bot/web build
 
 ############################ runtime ############################
 FROM node:${NODE_VERSION}-bookworm-slim AS runtime
-LABEL org.opencontainers.image.title="acmebr-zettabytes-web"
+LABEL org.opencontainers.image.title="acme-bot-web"
 ENV NODE_ENV=production NEXT_TELEMETRY_DISABLED=1 PORT=3100 HOSTNAME=0.0.0.0
 
 RUN groupadd --system --gid 1001 app \

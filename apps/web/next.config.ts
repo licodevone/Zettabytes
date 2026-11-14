@@ -8,7 +8,7 @@ const nextConfig: NextConfig = {
   output: "standalone",
   outputFileTracingRoot: path.join(__dirname, "../.."),
   // O client da API é consumido como código-fonte TS direto do workspace.
-  transpilePackages: ["@zettabytes/api-client"],
+  transpilePackages: ["@acme-bot/api-client"],
 };
 
 export default nextConfig;

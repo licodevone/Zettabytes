@@ -1,5 +1,5 @@
 {
-  "name": "@zettabytes/typescript-config",
+  "name": "@acme-bot/typescript-config",
   "version": "1.0.0",
   "license": "MIT",
   "private": true,

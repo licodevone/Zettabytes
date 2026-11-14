@@ -26,11 +26,10 @@ class Settings(BaseSettings):
         extra="ignore",
     )
 
-    PROJECT_NAME: str = "Zettabytes API"
+    PROJECT_NAME: str = "Acmebot API"
     VERSION: str = "1.0.0"
     ENVIRONMENT: Environment = Environment.DEVELOPMENT
     API_V1_PREFIX: str = "/api/v1"
-
     SITE_CHAT_KEY: SecretStr | None = None
     SITE_SLUG: str = "acmebr"
     # Canal próprio da ACMEbr. Não conecta números de outros tenants.
@@ -70,10 +69,10 @@ class Settings(BaseSettings):
 
     # ─── Banco de dados ──────────────────────────────────────
     DATABASE_URL: PostgresDsn = PostgresDsn(
-        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/acmebr_zettabytes"
+        "postgresql+asyncpg://acmebr:acmebr@localhost:5442/acmebr"
     )
     TEST_DATABASE_URL: PostgresDsn = PostgresDsn(
-        "postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/acmebr_zettabytes_test"
+        "postgresql+asyncpg://acmebr:acmebr@localhost:5442/acmebr_test"
     )
     DB_POOL_SIZE: int = 10
     DB_MAX_OVERFLOW: int = 20
@@ -83,7 +82,7 @@ class Settings(BaseSettings):
     # ─── Segurança / JWT ─────────────────────────────────────
     JWT_SECRET_KEY: SecretStr = SecretStr("dev-insecure-secret-change-me-" + "x" * 32)
     JWT_ALGORITHM: str = "HS256"
-    JWT_ISSUER: str = "zettabytes"
+    JWT_ISSUER: str = "acme-bot"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
     REFRESH_TOKEN_EXPIRE_DAYS: int = 30
     # Chave Fernet para criptografar segredos em repouso (tokens da Meta).

@@ -1,7 +1,7 @@
 [project]
-name = "zettabytes-api"
+name = "acme-bot-api"
 version = "1.0.0"
-description = "Zettabytes — backend FastAPI (multi-tenant, WhatsApp Cloud API, agentes de IA)"
+description = "Acmebot — backend FastAPI (multi-tenant, WhatsApp Cloud API, agentes de IA)"
 license = "MIT"
 authors = [{ name = "Luis E. S. Pinheiro" }]
 requires-python = ">=3.12"

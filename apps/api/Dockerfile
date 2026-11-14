@@ -1,8 +1,8 @@
 # syntax=docker/dockerfile:1.7
-# API do Zettabytes — FastAPI + uvicorn, SQLAlchemy async + Alembic, uv, Python 3.12.
+# API do Acmebot — FastAPI + uvicorn, SQLAlchemy async + Alembic, uv, Python 3.12.
 # Modelo: acmebr-infra/dockerfiles/python-fastapi.Dockerfile
 # Contexto = RAIZ do monorepo (para valer o .dockerignore da raiz, que tira .venv):
-#   docker build -f apps/api/Dockerfile -t acmebr/zettabytes-api .
+#   docker build -f apps/api/Dockerfile -t acmebr/acme-bot-api .
 # Config por ambiente: DATABASE_URL, REDIS_URL, JWT_SECRET_KEY, ENCRYPTION_KEY,
 # CORS_ORIGINS, ENVIRONMENT (ver .env.example).
 
@@ -27,7 +27,7 @@ COPY apps/api/alembic.ini ./
 
 ############################ runtime ############################
 FROM python:${PYTHON_VERSION}-slim-bookworm AS runtime
-LABEL org.opencontainers.image.title="acmebr-zettabytes-api"
+LABEL org.opencontainers.image.title="acme-bot-api"
 RUN groupadd --system --gid 1001 app \
  && useradd --system --uid 1001 --gid app --home /repo --shell /usr/sbin/nologin app
 WORKDIR /repo/apps/api

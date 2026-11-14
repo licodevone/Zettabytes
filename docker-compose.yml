@@ -1,28 +1,28 @@
-name: acmebr-zettabytes
+name: acme-bot
 
 services:
   postgres:
-    container_name: acmebr-zettabytes-postgres
+    container_name: acme-bot
     # PostgreSQL 17 com a extensão pgvector (embeddings do RAG).
     image: pgvector/pgvector:pg17
     restart: unless-stopped
     environment:
-      POSTGRES_USER: zettabytes
-      POSTGRES_PASSWORD: zettabytes
-      POSTGRES_DB: acmebr_zettabytes
+      POSTGRES_USER: acmebr
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-acmebr}
+      POSTGRES_DB: acmebr
     ports:
       - "127.0.0.1:${POSTGRES_PORT:-5442}:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
       - ./infra/postgres/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U zettabytes -d acmebr_zettabytes"]
+      test: ["CMD-SHELL", "pg_isready -U acmebr -d acmebr"]
       interval: 5s
       timeout: 5s
       retries: 10
 
   redis:
-    container_name: acmebr-zettabytes-redis
+    container_name: acme-bot-redis
     # Filas (webhooks da Meta), rate limiting e cache de sessão — usado a partir do Prompt 2.
     image: redis:7-alpine
     restart: unless-stopped
@@ -36,4 +36,11 @@ services:
 
 volumes:
   pgdata:
-    name: acmebr-zettabytes-postgres-data
+    # Os dados persistem independentemente do ciclo de vida dos containers.
+    name: acme-bot-postgres-data
+
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: ${DOCKER_SUBNET:-10.203.0.0/24}

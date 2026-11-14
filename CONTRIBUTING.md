@@ -1,4 +1,4 @@
-# Contribuindo com o Zettabytes
+# Contribuindo com o Acmebot
 
 Obrigado pelo interesse! Este guia explica como o projeto é versionado, como preparar o ambiente e o que esperamos de um pull request.
 
@@ -123,7 +123,7 @@ Para quebras de compatibilidade, use `!` (`feat(api)!: …`) e descreva o impact
 - [ ] O PR aponta para a branch `release/vX.Y` ativa.
 - [ ] Tem testes cobrindo o comportamento novo ou o bug corrigido.
 - [ ] `pnpm lint`, `pnpm typecheck` e `pnpm test` passam localmente.
-- [ ] Mudanças de schema têm migration do Alembic (`pnpm --filter @zettabytes/api db:revision "mensagem"`) revisada à mão.
+- [ ] Mudanças de schema têm migration do Alembic (`pnpm --filter @acme-bot/api db:revision "mensagem"`) revisada à mão.
 - [ ] Mudanças na API regeneraram o client (`pnpm codegen`) e o `openapi.json`/`schema.d.ts` foram commitados.
 - [ ] Toda consulta a tabela de domínio filtra por `company_id`.
 - [ ] Nenhum segredo, `.env` ou dado pessoal foi commitado.
@@ -141,12 +141,12 @@ Para quebras de compatibilidade, use `!` (`feat(api)!: …`) e descreva o impact
 - Enums são `StrEnum` em `app/models/enums.py`, gravados como `VARCHAR`: adicionar valores não exige migration.
 - Segredos em repouso usam o `TypeDecorator` de criptografia (Fernet), nunca texto puro.
 - Erros de domínio herdam de `DomainError` (`app/core/exceptions.py`).
-- Testes de integração rodam contra Postgres real (`acmebr_zettabytes_test`). Use as fixtures `client`, `db`, `plans` e os helpers `register()` e `auth()` de `tests/conftest.py`.
+- Testes de integração rodam contra Postgres real (`acmebr_test`). Use as fixtures `client`, `db`, `plans` e os helpers `register()` e `auth()` de `tests/conftest.py`.
 
 ### Frontend (TypeScript)
 
 - TypeScript `strict`, React Server Components por padrão e `"use client"` apenas quando necessário.
-- Chamadas à API somente via `@zettabytes/api-client` (tipado pelo OpenAPI). Não escreva tipos de resposta à mão.
+- Chamadas à API somente via `@acme-bot/api-client` (tipado pelo OpenAPI). Não escreva tipos de resposta à mão.
 - Formatação com Prettier (`pnpm format`).
 
 ### Contrato API ↔ Web
@@ -163,7 +163,7 @@ O `openapi.json` gerado pelo FastAPI é a **fonte única da verdade**. Qualquer 
 3. Faça merge da `release/vX.Y` na `master` e crie a tag anotada:
 
    ```bash
-   git tag -a vX.Y.Z -m "Zettabytes vX.Y.Z"
+   git tag -a vX.Y.Z -m "Acmebot vX.Y.Z"
    git push origin master --tags
    ```
 

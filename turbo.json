@@ -17,7 +17,7 @@
     },
     "generate": {
       "dependsOn": [
-        "@zettabytes/api#openapi"
+        "@acme-bot/api#openapi"
       ],
       "inputs": [
         "openapi.json"
@@ -60,6 +60,7 @@
       ]
     },
     "test": {
+      "cache": false,
       "outputs": []
     },
     "db:migrate": {

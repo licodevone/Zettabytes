@@ -18,16 +18,16 @@ jobs:
       postgres:
         image: pgvector/pgvector:pg17
         env:
-          POSTGRES_USER: zettabytes
-          POSTGRES_PASSWORD: zettabytes
-          POSTGRES_DB: acmebr_zettabytes_test
+          POSTGRES_USER: acmebr
+          POSTGRES_PASSWORD: acmebr
+          POSTGRES_DB: acmebr_test
         ports:
           - 5442:5432
         options: >-
-          --health-cmd "pg_isready -U zettabytes -d acmebr_zettabytes_test"
+          --health-cmd "pg_isready -U acmebr -d acmebr_test"
           --health-interval 5s --health-timeout 5s --health-retries 10
     env:
-      TEST_DATABASE_URL: postgresql+asyncpg://zettabytes:zettabytes@localhost:5442/acmebr_zettabytes_test
+      TEST_DATABASE_URL: postgresql+asyncpg://acmebr:acmebr@localhost:5442/acmebr_test
       TURBO_TELEMETRY_DISABLED: 1
     steps:
       - uses: actions/checkout@v4
@@ -36,7 +36,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 24
           cache: pnpm
 
       - uses: astral-sh/setup-uv@v6

@@ -183,7 +183,7 @@ importers:
 
   apps/web:
     dependencies:
-      '@zettabytes/api-client':
+      '@acme-bot/api-client':
         specifier: workspace:*
         version: link:../../packages/api-client
       next:
@@ -208,7 +208,7 @@ importers:
       '@typescript/native':
         specifier: npm:typescript@7.0.2
         version: typescript@7.0.2
-      '@zettabytes/typescript-config':
+      '@acme-bot/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
       typescript:
@@ -224,7 +224,7 @@ importers:
       '@typescript/native':
         specifier: npm:typescript@7.0.2
         version: typescript@7.0.2
-      '@zettabytes/typescript-config':
+      '@acme-bot/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
       openapi-typescript:
